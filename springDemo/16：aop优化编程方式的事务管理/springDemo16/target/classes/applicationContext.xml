@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+">
+
+    <context:property-placeholder location="classpath:jdbc.properties"/><!--加载jdbc资源-->
+
+    <bean id="userTransaction" class="cn.cdw.aop.UserAop">
+        <property name="druidDataSource" ref="druidDataSource"/> <!--注入数据源-->
+    </bean>
+
+    <bean id="userService" class="cn.cdw.service.impl.UserServiceImpl"> <!--把service添加到spring容器-->
+        <property name="userMapper" ref="userMapper"/> <!--将dao注入到service-->
+     </bean>
+
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource"> <!--druid数据库连接池-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="druidDataSource"/> <!--整合mybatis数据源-->
+        <property name="typeAliasesPackage" value="cn.cdw.pojo" />  <!--整合mybatis使用别名-->
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+        <property name="basePackage" value="cn.cdw.mapper"/> <!--整合mybatis扫描映射文件-->
+    </bean>
+
+    <!--/////////////////////////////////////////////////配置aop/////////////////////////////////////////////////////-->
+    <aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..transfer(..))"/> <!--切入点-->
+        <aop:aspect ref="userTransaction"> <!--通知-->
+            <aop:around method="transactionAop" pointcut-ref="pt"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

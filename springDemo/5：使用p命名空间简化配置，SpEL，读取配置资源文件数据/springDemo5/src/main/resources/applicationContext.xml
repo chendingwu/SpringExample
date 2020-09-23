@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+">
+    <context:property-placeholder location="classpath:*.properties"/><!--加载配置文件-->
+
+    <bean id="userDao" class="cn.cdw.mapper.impl.UserDaoImpl">
+        <property name="username" value="${user}"/>
+        <property name="password" value="${psw}"/><!--读取配置文件数据-->
+    </bean>
+
+    <bean id="userService" class="cn.cdw.service.impl.UserServiceImpl" p:userDao-ref="userDao"/><!--将dao注入service，使用p命名空间简化书写-->
+
+    <bean id="userService1" class="cn.cdw.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/> <!--将dao注入service，没有使用p命名空间书写-->
+     </bean>
+
+    <bean id="userService2" class="cn.cdw.service.impl.UserServiceImpl">
+        <property name="userDao" value="#{userDao}"/> <!--使用SpEL表达式将dao注入service-->
+    </bean>
+
+
+
+
+</beans>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="cn.cdw.pojo.User"><!--pojo注入到spring管理-->
+        <property name="name" value="小明"/>
+        <property name="age" value="21"/>
+    </bean>
+
+    <bean id="userDao" class="cn.cdw.dao.impl.UserDaoImpl"><!--dao注入到spring容器管理-->
+        <property name="arrayList">
+            <list>
+                <value>小明</value>
+                <value>夏利</value>
+                <ref bean="user"/>
+                <bean class="cn.cdw.pojo.User"/>
+            </list>
+        </property>
+
+        <property name="properties"><!--注入properties-->
+            <props>
+                <prop key="name">小明</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+
+        <property name="arr"> <!--注入数组数据-->
+            <array>
+                <value>100</value>
+                <value>200</value>
+                <value>300</value>
+                <ref bean="user"/>
+                <bean class="cn.cdw.pojo.User"/>
+            </array>
+        </property>
+
+        <property name="hashSet"> <!--注入set集合数据-->
+            <set>
+                <value>小明</value>
+                <value>小李</value>
+                <ref bean="user"/>
+                <bean class="cn.cdw.pojo.User"/>
+            </set>
+        </property>
+
+        <property name="hashMap"> <!--注入map集合数据-->
+            <map>
+                <entry key="name" value="小明"/>
+                <entry key="age" value="12"/>
+                <entry key="user1">
+                    <ref bean="user"/>
+                </entry>
+                <entry key="user2">
+                    <bean class="cn.cdw.pojo.User"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="userService" class="cn.cdw.service.impl.UserServiceImpl"><!--service注入spring容器管理-->
+        <property name="userDao" ref="userDao"/><!--注入dao-->
+    </bean>
+
+</beans>

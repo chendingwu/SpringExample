@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springDemo18" />
+        <module name="springDemo19" />
+        <module name="springDemo9" />
+        <module name="springDemo8" />
+        <module name="springDemo7" />
+        <module name="springDemo6" />
+        <module name="springDemo5" />
+        <module name="springDemo4" />
+        <module name="springDemo3" />
+        <module name="springDemo2" />
+        <module name="springDemo1" />
+        <module name="springDemo16" />
+        <module name="springDemo15" />
+        <module name="springDemo14" />
+        <module name="springDemo13" />
+        <module name="springDemo12" />
+        <module name="springDemo11" />
+        <module name="springDemo10" />
+        <module name="springDemo17" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springDemo1" target="1.5" />
+      <module name="springDemo10" target="1.5" />
+      <module name="springDemo11" target="1.5" />
+      <module name="springDemo12" target="1.5" />
+      <module name="springDemo13" target="1.5" />
+      <module name="springDemo14" target="1.5" />
+      <module name="springDemo15" target="1.5" />
+      <module name="springDemo16" target="1.5" />
+      <module name="springDemo17" target="1.5" />
+      <module name="springDemo18" target="1.5" />
+      <module name="springDemo19" target="1.5" />
+      <module name="springDemo2" target="1.5" />
+      <module name="springDemo3" target="1.5" />
+      <module name="springDemo4" target="1.5" />
+      <module name="springDemo5" target="1.5" />
+      <module name="springDemo6" target="1.5" />
+      <module name="springDemo7" target="1.5" />
+      <module name="springDemo8" target="1.5" />
+      <module name="springDemo9" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

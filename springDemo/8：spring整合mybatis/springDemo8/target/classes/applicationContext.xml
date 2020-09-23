@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+">
+
+    <bean id="userService" class="cn.cdw.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userMapper"/><!--dao不需要自己声明，spring会帮我们自动管理-->
+    </bean>
+
+    <context:property-placeholder location="classpath:jdbc.properties"/><!--加载jdbc资源配置文件-->
+
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource"><!--配置连接数据库相关参数-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/><!--读取配置文件的数据-->
+     </bean>
+
+
+
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean"><!--spring整合mybatis的数据源和别名配置-->
+        <property name="dataSource" ref="druidDataSource"/><!--配置数据源-->
+        <property name="typeAliasesPackage" value="cn.cdw.pojo"/><!--配置使用别名-->
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"><!--speing整合配置扫描dao映射文件位置-->
+        <property name="basePackage" value="cn.cdw.mapper"/><!--配置扫描dao映射文件位置-->
+    </bean>
+
+</beans>

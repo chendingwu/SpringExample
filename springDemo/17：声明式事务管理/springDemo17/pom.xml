@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>war</packaging>
+
+  <name>springDemo17</name>
+  <groupId>cn.cdw</groupId>
+  <artifactId>springDemo17</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <dependencies>
+    <!--///////////////////////////////////spring整合mybatis所需依赖/////////////////////////////////////////////////-->
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.2.9.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.9.RELEASE</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.37</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.1.24</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>2.0.5</version>
+    </dependency>
+
+    <!--////////////////////////////////////////////////spring整合事务所需依赖/////////////////////////////////////////-->
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>5.2.9.RELEASE</version>
+    </dependency>
+
+
+    <!--////////////////////////////////////////////////spring整合aop所需依赖/////////////////////////////////////////-->
+    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.9.6</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+</project>

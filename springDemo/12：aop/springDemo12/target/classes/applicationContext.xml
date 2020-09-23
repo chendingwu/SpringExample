@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd
+">
+
+    <bean id="userService" class="cn.cdw.service.impl.UserServiceImpl"/>
+    <bean id="userAdvice" class="cn.cdw.advice.UserAdvice"/>
+
+   <!-- <aop:config> &lt;!&ndash;设置aop&ndash;&gt;
+        <aop:pointcut id="pt" expression="execution(* *..*(..))"/> &lt;!&ndash;获取切入点&ndash;&gt;
+        <aop:aspect ref="userAdvice">  &lt;!&ndash;获取通知&ndash;&gt;
+            <aop:before method="adviceMethod" pointcut-ref="pt"/> &lt;!&ndash;配置切入点和通知的指定方法的关系关联&ndash;&gt;
+        </aop:aspect>
+    </aop:config>-->
+
+
+    <!--切入点的三种配置-->
+  <!--  <aop:config> &lt;!&ndash;设置aop&ndash;&gt;
+        <aop:pointcut id="pt" expression="execution(* *..*(..))"/> &lt;!&ndash;公共切入点的配置&ndash;&gt;
+        <aop:aspect ref="userAdvice">
+            <aop:pointcut id="pt1" expression="execution(* *..*(..))"/> &lt;!&ndash;局部切入点的配置&ndash;&gt;
+            <aop:after method="adviceMethod" pointcut="execution(* *..*(..))"/> &lt;!&ndash;私有切入点配置&ndash;&gt;
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--aop的五种通知类型-->
+    <!--<aop:config>
+        <aop:pointcut id="pt"  expression="execution(* *..*(..))"/>
+        <aop:aspect ref="userAdvice">
+            &lt;!&ndash;<aop:after method="after" pointcut-ref="pt"/>&ndash;&gt;   &lt;!&ndash;程序执行前通知&ndash;&gt;
+            &lt;!&ndash;<aop:before method="before" pointcut-ref="pt"/>&ndash;&gt;  &lt;!&ndash;程序执行后通知&ndash;&gt;
+            &lt;!&ndash;<aop:after-returning method="afterReturning" pointcut-ref="pt"/> &ndash;&gt;&lt;!&ndash;程序放回后没有异常后通知&ndash;&gt;
+            &lt;!&ndash;<aop:after-throwing method="afterReturning" pointcut-ref="pt"/>&ndash;&gt; &lt;!&ndash;程序执行后出现异常执行&ndash;&gt;
+            <aop:around method="around" pointcut-ref="pt"/> &lt;!&ndash;环绕通知&ndash;&gt;
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--aop获取切入点方法参数方法一-->
+    <!--<aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..hello(..))"/>
+        <aop:aspect ref="userAdvice">
+            <aop:after method="getParam1" pointcut-ref="pt"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--aop获取切入点方法参数方法二-->
+    <!--<aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..hello(..)) &amp;&amp; args(a,b)" />
+        <aop:aspect ref="userAdvice">
+            <aop:after method="getParam2" pointcut-ref="pt" arg-names="b,a"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--aop获取切入点方法参数方法三，改变通知变量名的定义顺序-->
+    <!--<aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..hello(..)) &amp;&amp; args(a,b)" />
+        <aop:aspect ref="userAdvice">
+            <aop:after method="getParam2" pointcut-ref="pt" arg-names="b,a"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--aop的after-returning通知类型获取切入点返回值参数数据方式-->
+    <!--<aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..getResult(..))"/>
+        <aop:aspect ref="userAdvice">
+            <aop:after-returning method="getResultParam" pointcut-ref="pt" returning="ret"/>
+        </aop:aspect>
+    </aop:config>-->
+
+
+    <!--aop的around通知类型获取切入点返回值参数数据方式-->
+    <!--<aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..getResult(..))"/>
+        <aop:aspect ref="userAdvice">
+            <aop:around method="getResultParam1" pointcut-ref="pt"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--afterThrowing通知类型获取aop获取异常数据-->
+    <!--<aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..testException(..))"/>
+        <aop:aspect ref="userAdvice">
+            <aop:after-throwing method="getExceptionMessage"  pointcut-ref="pt" throwing="throwable"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--around通知类型获取aop获取异常数据-->
+    <aop:config>
+        <aop:pointcut id="pt" expression="execution(* *..testException(..))"/>
+        <aop:aspect ref="userAdvice">
+            <aop:around method="getExceptionMessage1" pointcut-ref="pt"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

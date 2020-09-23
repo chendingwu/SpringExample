@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="cn.cdw.service.impl.UserImpl"/><!--将实现类添加到Spring容器管理-->
+
+    <bean name="user1,user2" class="cn.cdw.service.impl.UserImpl"/><!--name属性的别名可以取多个，使用逗号(,)分隔-->
+
+    <bean id="userSingleton" scope="singleton" class="cn.cdw.service.impl.UserImpl"/><!--设置对象的范围为单列对象,不写scope默认就是单例-->
+    <bean id="userPrototype" scope="prototype" class="cn.cdw.service.impl.UserImpl"/><!--设置对象的范围为非单列对象-->
+
+    <!--<bean id="user3" scope="singleton" init-method="init" destroy-method="destroy" class="cn.cdw.service.impl.UserImpl"/>--> <!--singleton bean的生命周期-->
+    <bean id="user4" scope="prototype" init-method="init" destroy-method="destroy" class="cn.cdw.service.impl.UserImpl"/> <!--prototype bean的生命周期-->
+
+
+   <!-- <bean id="staticFactory" class="cn.cdw.factory.StaticFactory" factory-method="getUser"/>--><!--通过静态工厂获取Bean对象-->
+
+    <bean id="instanceFactory" class="cn.cdw.factory.InstanceFactory"/>
+    <bean id ="instanceFactoryInstanceUser" factory-bean="instanceFactory" factory-method="getUser"/><!--通过实例工厂获取Bean对象-->
+
+</beans>

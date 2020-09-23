@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userDao" class="cn.cdw.mapper.impl.UserDaoImpl"/><!--把dao添加到spring容器-->
+
+    <bean id="userService" class="cn.cdw.service.impl.UserServiceImpl"><!--通过构造方法注入的方式注入-->
+        <constructor-arg name="userDao" ref="userDao"/>
+        <constructor-arg name="i1" value="666"/>
+        <constructor-arg name="str" value="你好，spring啊"/>
+     </bean>
+
+</beans>
